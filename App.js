@@ -10,6 +10,8 @@ import {
 
 import Form from './components/Form';
 import Weather from './components/Weather';
+
+const config = require('./config.json');
 const App = () => {
   const [search, setSearch] = useState({city: '', cuntry: ''});
   const [fetchingInfo, setFetchingInfo] = useState(false);
@@ -28,8 +30,7 @@ const App = () => {
   useEffect(() => {
     const fetchForecast = async () => {
       if (fetchingInfo) {
-        const apiKey = 'a5fd7590764801ebfe6038b693b3b0a7';
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${config.API_KEY}`;
 
         try {
           const response = await fetch(url);
